@@ -8,6 +8,7 @@ import model.GameModel;
 /**
  * MainApp starts the program
  * @author Put your team name here
+ * Nathan Milhorn
  */
 public class MainApp {
 	
