@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  * A custom game drawing area.
@@ -26,6 +27,7 @@ public class GameComponent extends JPanel {
 	public static final Color BG = Color.CYAN;
 	public static final Color FG = Color.BLACK;
 	BufferedImage background;
+	private Timer timer;
 	
 	public GameComponent() {
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -39,8 +41,14 @@ public class GameComponent extends JPanel {
 		} catch (IOException | IllegalArgumentException e) {
 			background = null;
 		}
+		timer = new Timer(30,e->{
+			ball.update();
+			repaint();
+		});
+		timer.start();
+		}
 
-	}
+	
 
 	@Override
 	protected void paintComponent(Graphics g) {

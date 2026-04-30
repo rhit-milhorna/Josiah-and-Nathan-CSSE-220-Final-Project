@@ -85,10 +85,11 @@ public class Ball {
 		// Replace the current x with the original x
 		this.x = this.startX;
 	}
+
 	public void update() {
-		x+=dx;
-		y+=dy;
+		// TODO Auto-generated method stub
 		
 	}
+
 
 }
