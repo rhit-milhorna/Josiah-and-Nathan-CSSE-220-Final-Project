@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -45,6 +47,29 @@ public class GameComponent extends JComponent {
 		repaint();
 	});
 	timer.start();
+	
+	this.addKeyListener(new KeyAdapter() {
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if (key == KeyEvent.VK_W) {
+				model.movePlayerUp();
+				repaint();
+			}
+			else if (key == KeyEvent.VK_S) {
+				model.movePlayerDown();
+				repaint();
+			}
+			else if (key == KeyEvent.VK_A) {
+				model.movePlayerLeft();
+				repaint();
+			}
+			else if (key == KeyEvent.VK_D) {
+				model.movePlayerRight();
+				repaint();
+			}
+		}
+	});
 	}
 	
 
@@ -62,6 +87,8 @@ public class GameComponent extends JComponent {
 	g2.drawString("Final Project Starter: UI is running ✅", 20, 30);
 	zombie1.draw(g2);
 	zombie1.update();
+	
+	model.getPlayer().draw(g2);
 	}
 
 	// TODO: draw based on model state

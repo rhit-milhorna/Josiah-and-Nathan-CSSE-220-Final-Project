@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import ui.GameComponent;
+
 
 public class Player {
 	
@@ -19,6 +21,40 @@ public class Player {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		
+		try {
+			sprite = ImageIO.read(Player.class.getResource("e"));
+		} catch (IOException | IllegalArgumentException e) {
+			sprite = null;
+		}
+	}
+	
+	public void draw(Graphics2D g2) {
+		if (sprite != null) {
+			g2.drawImage(sprite, x, y, width, height, null);
+		} else {
+		g2.setColor(Color.RED);
+		g2.fillOval(x, y, width, height);
+	}
+	}
+	
+	public void move(int dx, int dy) {
+		x += dx;
+		y += dy;
+		
+		if (x <= 0) {
+			x = 0;
+		}
+		if (x + width >= GameComponent.WIDTH) {
+			x = GameComponent.WIDTH - width;
+		}
+		
+		if (y <= 0) {
+			y = 0;
+		}
+		if (y + height >= GameComponent.HEIGHT) {
+			y = GameComponent.HEIGHT - height;
+		}
 	}
 	
 
