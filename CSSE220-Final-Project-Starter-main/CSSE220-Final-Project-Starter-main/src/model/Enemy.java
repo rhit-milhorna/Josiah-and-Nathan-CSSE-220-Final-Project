@@ -38,7 +38,7 @@ public class Enemy {
 	}
 	public void move() {
 		Random random = new Random();
-		if(this.directionClock%50 == 0) {
+		if(this.directionClock%100 == 0) {
 		this.direction = random.nextInt(0,5);
 		} else {
 			
@@ -47,18 +47,25 @@ public class Enemy {
 		return;
 	}
 	if(direction == 1) {
-		this.x += 2;
+		if(this.x<1900) {
+			this.x += 2;
+		}
+		
 	}
 	if(direction == 2) {
-		this.x -= 2;
-	}
+		if(this.x>0) {
+			this.x -= 2;
+		}
+		}
 	
 	if(direction == 3) {
-		this.y += 2;
-	}
+		if(this.y<1000) {
+			this.y += 2;
+		}	}
 	if(direction == 4) {
-		this.y -= 2;
-	}
+		if(this.y>0) {
+			this.y -= 2;
+		}	}
 	}
 	public void update() {
 		move();

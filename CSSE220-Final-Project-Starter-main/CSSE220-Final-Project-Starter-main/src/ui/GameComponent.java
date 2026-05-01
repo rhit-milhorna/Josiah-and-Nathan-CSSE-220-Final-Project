@@ -17,9 +17,9 @@ import model.GameModel;
 public class GameComponent extends JComponent {
 
 	
-	public static final int WIDTH = 400;
-	public static final int HEIGHT = 150;
-	public static final Color BG = Color.CYAN;
+	public static final int WIDTH = 1920;
+	public static final int HEIGHT = 1080;
+	public static final Color BG = Color.BLACK;
 	public static final Color FG = Color.BLACK;
 	BufferedImage background;
 	private Timer timer;
