@@ -30,7 +30,7 @@ public class Enemy {
 	
 	public void draw(Graphics2D g2) {
 		if (sprite != null) {
-			g2.drawImage(sprite,x,y,x+100,y+100,null);
+			g2.drawImage(sprite,x,y,200,200,null);
 		} else {
 			g2.setColor(Color.RED);
 			g2.fillOval(x, y, 100, 200);
@@ -66,6 +66,19 @@ public class Enemy {
 		if(this.y>0) {
 			this.y -= 2;
 		}	}
+	if(this.x>1800) {
+		this.x = 1800;
+	}
+	if(this.x<0) {
+		this.x = 0;
+	}
+	if(this.y>900) {
+		this.y=900;
+		}
+	if(this.y<0) {
+		this.y = 0;
+	
+	}
 	}
 	public void update() {
 		move();
