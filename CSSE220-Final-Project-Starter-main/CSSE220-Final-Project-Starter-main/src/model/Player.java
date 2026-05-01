@@ -9,6 +9,11 @@ import javax.imageio.ImageIO;
 
 import ui.GameComponent;
 
+/**
+ * Player class deals with player information
+ * @author Josiah Layman
+ */
+
 
 public class Player {
 	

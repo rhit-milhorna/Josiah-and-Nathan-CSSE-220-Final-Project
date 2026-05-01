@@ -8,6 +8,11 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Enemy class deals with enemy information
+ * @author Nathan Milhorn
+ */
+
 public class Enemy {
 	private int x,y;
 	private int startX;

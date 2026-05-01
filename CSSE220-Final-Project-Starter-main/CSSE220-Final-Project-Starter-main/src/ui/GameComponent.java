@@ -16,6 +16,11 @@ import javax.swing.Timer;
 import model.Enemy;
 import model.GameModel;
 
+/**
+ * GameComponent draws all objects on screen and handles player input
+ * @author Nathan Milhorn, Josiah Layman
+ */
+
 public class GameComponent extends JComponent {
 
 	
