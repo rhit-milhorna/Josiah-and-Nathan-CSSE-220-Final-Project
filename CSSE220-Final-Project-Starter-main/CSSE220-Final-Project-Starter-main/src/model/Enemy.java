@@ -12,6 +12,8 @@ public class Enemy {
 	private int x,y;
 	private int startX;
 	private int startY;
+	private int direction;
+	private int directionClock;
 	BufferedImage sprite;
 	public Enemy(int x, int y) {
 		this.x=x;
@@ -28,13 +30,38 @@ public class Enemy {
 	
 	public void draw(Graphics2D g2) {
 		if (sprite != null) {
-			g2.drawImage(sprite,x,y,null);
+			g2.drawImage(sprite,x,y,x+100,y+100,null);
 		} else {
 			g2.setColor(Color.RED);
 			g2.fillOval(x, y, 100, 200);
 		}
 	}
 	public void move() {
-		Random direction = new Random();
+		Random random = new Random();
+		if(this.directionClock%50 == 0) {
+		this.direction = random.nextInt(0,5);
+		} else {
+			
+		}
+		if(direction == 0) {
+		return;
+	}
+	if(direction == 1) {
+		this.x += 2;
+	}
+	if(direction == 2) {
+		this.x -= 2;
+	}
+	
+	if(direction == 3) {
+		this.y += 2;
+	}
+	if(direction == 4) {
+		this.y -= 2;
+	}
+	}
+	public void update() {
+		move();
+		this.directionClock++;
 	}
 }
