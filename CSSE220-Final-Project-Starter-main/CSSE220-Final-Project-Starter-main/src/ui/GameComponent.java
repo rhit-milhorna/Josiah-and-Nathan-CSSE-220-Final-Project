@@ -48,6 +48,9 @@ public class GameComponent extends JComponent {
 	});
 	timer.start();
 	
+	this.setFocusable(true);
+	this.requestFocusInWindow();
+	
 	this.addKeyListener(new KeyAdapter() {
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -68,6 +71,7 @@ public class GameComponent extends JComponent {
 				model.movePlayerRight();
 				repaint();
 			}
+			
 		}
 	});
 	}

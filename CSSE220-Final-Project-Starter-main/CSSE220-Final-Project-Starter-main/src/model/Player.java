@@ -39,22 +39,22 @@ public class Player {
 	}
 	
 	public void move(int dx, int dy) {
-		x += dx;
-		y += dy;
+		this.x += dx;
+		this.y += dy;
 		
-		if (x <= 0) {
-			x = 0;
-		}
-		if (x + width >= GameComponent.WIDTH) {
-			x = GameComponent.WIDTH - width;
-		}
-		
-		if (y <= 0) {
-			y = 0;
-		}
-		if (y + height >= GameComponent.HEIGHT) {
-			y = GameComponent.HEIGHT - height;
-		}
+//		if (x <= 0) {
+//			x = 0;
+//		}
+//		if (x + width >= GameComponent.WIDTH) {
+//			x = GameComponent.WIDTH - width;
+//		}
+//		
+//		if (y <= 0) {
+//			y = 0;
+//		}
+//		if (y + height >= GameComponent.HEIGHT) {
+//			y = GameComponent.HEIGHT - height;
+//		}
 	}
 	
 
