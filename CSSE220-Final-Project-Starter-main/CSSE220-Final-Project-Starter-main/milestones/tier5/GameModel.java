@@ -1,6 +1,7 @@
 package tier5;
 
 import java.awt.Graphics2D;
+import java.io.InputStream;
 
 /**
  * Represents the core game state (the "model").
@@ -17,9 +18,14 @@ public class GameModel {
 	// TODO: store multiple balls
     // private ArrayList<Ball> balls;
 	
+	private Ball ball;
+	
+	public static final int TILE_SIZE = 40;
+	
 
 	public GameModel() {
 		// TODO: load a level file (e.g., "level1.txt")
+		loadLevel("level1.txt");
 	}
 	
 	/**
@@ -31,14 +37,51 @@ public class GameModel {
 	 */
 	public void loadLevel(String filename) {
 	    // TODO: read file and build game objects
+		
+		int row = 0;
+		
+		InputStream stream = GameModel.class.getResourceAsStream(filename);
+		if (stream == null) throw new RuntimeException("Level file not found");
+		
+		java.util.Scanner scanner = new java.util.Scanner(stream);
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			for (int col = 0; col < line.length(); col++) {
+				char ch = line.charAt(col);
+				if (ch == 'B') {
+					int x = col*TILE_SIZE;
+					int y = row*TILE_SIZE;
+					ball = new Ball(x, y, 14);
+					scanner.close();
+					return;
+				}
+			}
+			row++;
+		}
+		scanner.close();
+		throw new IllegalStateException("Level must contain a B.");
 	}
 	
 	public void update() {
         // TODO: update each ball
+		ball.update();
     }
 
     public void draw(Graphics2D g2) {
         // TODO: draw each ball
+    	ball.draw(g2);
+    }
+    
+    public void movePlayer(int dx) {
+        if (ball != null) {
+            ball.shift(dx);
+        }
+    }
+
+    public void centerPlayer() {
+        if (ball != null) {
+            ball.reset();
+        }
     }
 	
 }
