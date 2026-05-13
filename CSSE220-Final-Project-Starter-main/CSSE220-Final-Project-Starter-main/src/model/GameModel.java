@@ -27,6 +27,12 @@ public class GameModel {
 		gems = new ArrayList<>();
 		player = new Player(50, 50, 80, 80);
 		zombies.add(new Enemy(250, 250));
+		zombies.add(new Enemy(500,500));
+		gems.add(new Gem(500,500));
+		gems.add(new Gem(800,200));
+		gems.add(new Gem(200,1000));
+		gems.add(new Gem(500,600));
+		totalgems = gems.size();
 	}
 	public void Update() {
 		if(!(gems==null)){
