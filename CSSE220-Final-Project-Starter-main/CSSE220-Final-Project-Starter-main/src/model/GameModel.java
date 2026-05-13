@@ -84,5 +84,9 @@ public class GameModel {
 		if (player.getLives() == 0) return true;
 		else return false;
 	}
+	
+	public int getGemsCollected() {
+		return this.gemscollected;
+	}
 
 }

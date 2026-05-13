@@ -32,7 +32,7 @@ public class GameComponent extends JComponent {
 	BufferedImage background;
 	private Timer timer;
 	private GameModel model;
-	//private Enemy zombie1 = new Enemy(250, 250);
+	private Enemy zombie1 = new Enemy(250, 250);
 
 	public GameComponent(GameModel model) {
 	this.model = model;
@@ -41,7 +41,7 @@ public class GameComponent extends JComponent {
 	this.setOpaque(true); // we want our own background here. If false - it will be see-through
 
 	//Player player = new Player();
-	//Enemy zombie1 = new Enemy(250, 250);
+	Enemy zombie1 = new Enemy(250, 250);
 	try {
 		background = ImageIO.read(this.getClass().getResource("background.png"));
 	} catch (IOException | IllegalArgumentException e) {
@@ -49,7 +49,7 @@ public class GameComponent extends JComponent {
 	}
 	timer = new Timer(30,e->{
 		if (!model.isGameOver()) {
-		model.Update();
+		zombie1.update();
 		//player.update();
 		}
 		repaint();
@@ -63,21 +63,23 @@ public class GameComponent extends JComponent {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if (key == KeyEvent.VK_W) {
-				model.movePlayerUp();
-				repaint();
-			}
-			else if (key == KeyEvent.VK_S) {
-				model.movePlayerDown();
-				repaint();
-			}
-			else if (key == KeyEvent.VK_A) {
-				model.movePlayerLeft();
-				repaint();
-			}
-			else if (key == KeyEvent.VK_D) {
-				model.movePlayerRight();
-				repaint();
+			if (!model.isGameOver()) {
+				if (key == KeyEvent.VK_W) {
+					model.movePlayerUp();
+					repaint();
+				}
+				else if (key == KeyEvent.VK_S) {
+					model.movePlayerDown();
+					repaint();
+				}
+				else if (key == KeyEvent.VK_A) {
+					model.movePlayerLeft();
+					repaint();
+				}
+				else if (key == KeyEvent.VK_D) {
+					model.movePlayerRight();
+					repaint();
+				}
 			}
 			
 		}
@@ -99,9 +101,9 @@ public class GameComponent extends JComponent {
 	Font font = new Font("Ariel", Font.BOLD, 20);
 	g2.setFont(font);
 	g2.drawString("Lives: " + model.getPlayer().getLives(), 20, 30);
-	for (Enemy zombie:model.zombies) {
-		zombie.draw(g2);
-	}
+	g2.drawString("Gems collected: " + model.getGemsCollected(), 120, 30);
+	zombie1.draw(g2);
+	zombie1.update();
 	
 	model.getPlayer().draw(g2);
 	
