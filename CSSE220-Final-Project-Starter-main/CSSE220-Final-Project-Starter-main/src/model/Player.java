@@ -68,6 +68,10 @@ public class Player implements Collidable{
 			y = GameComponent.HEIGHT - height;
 		}
 	}
+	public void reset() {
+		this.x = this.startx;
+		this.y = this.starty;
+	}
 	
 	public int getLives() {
 		return this.lives;
@@ -75,8 +79,12 @@ public class Player implements Collidable{
 	public Rectangle getBounds() {
 	    return new Rectangle(x, y, width, height);
 	}
+	public void removeLife() {
+		this.lives --;
+	}
 	public boolean collidesWithGem(Gem gem) {
 		return this.getBounds().intersects(gem.getBounds());
+	
 	}
 	@Override
 	public boolean collidesWith(Collidable other) {

@@ -18,14 +18,18 @@ public class GameModel {
 	
 	private Player player;
 	private ArrayList<Gem> gems;
-	private ArrayList<Enemy> zombies;
+	public ArrayList<Enemy> zombies;
 	private int totalgems;
 	private int gemscollected;
 	
 	public GameModel() {
+		zombies = new ArrayList<>();
+		gems = new ArrayList<>();
 		player = new Player(50, 50, 80, 80);
+		zombies.add(new Enemy(250, 250));
 	}
 	public void Update() {
+		if(!(gems==null)){
 		for (Gem gem: gems) {
 			if (gem.collidesWith(player)) {
 				if(totalgems> gemscollected) {
@@ -34,6 +38,22 @@ public class GameModel {
 				}
 				
 			}
+		}
+		}
+		
+		
+		if(!(zombies == null)) {
+		for (Enemy	 zombie: zombies) {
+			zombie.update();
+			if (zombie.collidesWith(player)) {
+				if(player.getLives()>0) {
+					
+					player.removeLife();
+					player.reset();
+				}
+				
+			}
+		}
 		}
 	}
 	
