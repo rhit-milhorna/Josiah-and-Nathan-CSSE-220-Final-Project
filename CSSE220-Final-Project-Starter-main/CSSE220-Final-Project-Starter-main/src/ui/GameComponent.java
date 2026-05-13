@@ -49,7 +49,7 @@ public class GameComponent extends JComponent {
 	}
 	timer = new Timer(30,e->{
 		if (!model.isGameOver()) {
-		zombie1.update();
+		model.Update();
 		//player.update();
 		}
 		repaint();
@@ -102,9 +102,9 @@ public class GameComponent extends JComponent {
 	g2.setFont(font);
 	g2.drawString("Lives: " + model.getPlayer().getLives(), 20, 30);
 	g2.drawString("Gems collected: " + model.getGemsCollected(), 120, 30);
-	zombie1.draw(g2);
-	zombie1.update();
-	
+	for (Enemy zombie:model.zombies) {
+		zombie.draw(g2);
+	}
 	model.getPlayer().draw(g2);
 	
 	
