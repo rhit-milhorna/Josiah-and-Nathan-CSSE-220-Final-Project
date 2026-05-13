@@ -100,8 +100,10 @@ public class Enemy implements Collidable{
 	}
 	@Override
 	public boolean collidesWith(Collidable other) {
+		
 		Player player = (Player) other;
 		return this.getBounds().intersects(player.getBounds());
+		
 	}
 	
 
