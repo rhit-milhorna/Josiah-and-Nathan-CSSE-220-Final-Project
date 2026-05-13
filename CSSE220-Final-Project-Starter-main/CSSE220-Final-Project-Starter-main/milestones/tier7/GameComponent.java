@@ -43,7 +43,9 @@ public class GameComponent extends JPanel {
 		}
 		
 		timer = new Timer(30, e -> {
-		    model.update();
+		    if (!model.isGameOver()) {
+			model.update();
+		    }
 		    repaint();
 		  });
 		
@@ -65,6 +67,11 @@ public class GameComponent extends JPanel {
 		model.draw(g2);
 		// TODO Tier 7:
 		// Draw the scoreboard on screen
+		g2.drawString("Total Balls: " + model.getTotalBalls(), 30, 60);
+		g2.drawString("Balls Lost: " + model.getBallsLost(), 30, 100);
+		if(model.isGameOver()) {
+			g2.drawString("GAME OVER!!!!", 100, 70);
+		}
 	}
 	
     /**

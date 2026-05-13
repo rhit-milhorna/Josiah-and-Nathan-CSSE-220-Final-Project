@@ -26,11 +26,16 @@ public class GameModel {
  // Add fields to track:
  // 1. total number of balls
  // 2. number of eliminated balls
+    private int totalBalls;
+    private int ballsLost;
 
 	public GameModel() {
 		balls = new ArrayList<>();
 		// TODO: load a level file (e.g., "level1.txt")
 		loadLevel("level1.txt");
+		
+		totalBalls = balls.size();
+		ballsLost = 0;
 	}
 	
 	/**
@@ -96,6 +101,7 @@ public class GameModel {
 
 		        if (player.collidesWith(balls.get(i))) {
 		            balls.remove(i); // safe
+		            ballsLost++;
 		        }
 		    }
     }
@@ -119,4 +125,16 @@ public class GameModel {
             player.reset();
         }
     }	
+    
+    public int getTotalBalls() {
+    	return totalBalls;
+    }
+    
+    public int getBallsLost() {
+    	return ballsLost;
+    }
+    
+    public boolean isGameOver() {
+    	return balls.isEmpty();
+    }
 }
