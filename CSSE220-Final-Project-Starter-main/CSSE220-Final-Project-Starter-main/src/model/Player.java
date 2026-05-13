@@ -64,5 +64,9 @@ public class Player {
 		}
 	}
 	
+	public int getLives() {
+		return this.lives;
+	}
+	
 
 }

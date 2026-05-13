@@ -47,8 +47,10 @@ public class GameComponent extends JComponent {
 		background = null;
 	}
 	timer = new Timer(30,e->{
+		if (!model.isGameOver()) {
 		zombie1.update();
 		//player.update();
+		}
 		repaint();
 	});
 	timer.start();
@@ -98,6 +100,11 @@ public class GameComponent extends JComponent {
 	zombie1.update();
 	
 	model.getPlayer().draw(g2);
+	
+	
+	if (model.isGameOver()) {
+		g2.drawString("Game Over!", WIDTH / 2, HEIGHT / 2);
+	}
 	}
 
 	// TODO: draw based on model state

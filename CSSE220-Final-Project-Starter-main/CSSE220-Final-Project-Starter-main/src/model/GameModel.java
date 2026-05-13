@@ -38,5 +38,10 @@ public class GameModel {
 	public void movePlayerRight() {
 		player.move(10, 0);
 	}
+	
+	public boolean isGameOver() {
+		if (player.getLives() == 0) return true;
+		else return false;
+	}
 
 }
