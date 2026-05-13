@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
+import app.MainApp;
 import model.Enemy;
 import model.GameModel;
 import model.Gem;
@@ -82,6 +83,11 @@ public class GameComponent extends JComponent {
 					repaint();
 				}
 			}
+			else {
+				if (key == KeyEvent.VK_ENTER) {
+					model.resetGame();
+				}
+			}
 			
 		}
 	});
@@ -115,7 +121,11 @@ public class GameComponent extends JComponent {
 	if (model.isGameOver()) {
 		Font gameOverFont = new Font("Ariel", Font.BOLD, 50);
 		g2.setFont(gameOverFont);
+		g2.setColor(Color.RED);
 		g2.drawString("Game Over!", WIDTH / 2, HEIGHT / 2);
+		g2.setColor(Color.BLACK);
+		g2.setFont(new Font("Ariel", Font.PLAIN, 25));
+		g2.drawString("Press Enter to restart", WIDTH / 2, (HEIGHT / 2) + 25);
 	}
 	}
 

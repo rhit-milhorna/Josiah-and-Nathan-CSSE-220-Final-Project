@@ -26,4 +26,10 @@ public class MainApp {
 		window.show();
 	}
 	
+	public static void reset() {
+		SwingUtilities.invokeLater(() -> {
+			new MainApp().run();
+			});
+	}
+	
 }

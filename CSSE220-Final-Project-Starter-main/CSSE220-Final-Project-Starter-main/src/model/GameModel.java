@@ -28,10 +28,7 @@ public class GameModel {
 		player = new Player(50, 50, 80, 120);
 		zombies.add(new Enemy(250, 250));
 		zombies.add(new Enemy(1500,500));
-		gems.add(new Gem(500,500));
-		gems.add(new Gem(800,200));
-		gems.add(new Gem(200,1000));
-		gems.add(new Gem(1500,600));
+		this.addGems();
 		totalgems = gems.size();
 	}
 	public void Update() {
@@ -87,6 +84,19 @@ public class GameModel {
 	
 	public int getGemsCollected() {
 		return this.gemscollected;
+	}
+	
+	public void addGems() {
+		gems.add(new Gem(500,500));
+		gems.add(new Gem(800,200));
+		gems.add(new Gem(200,1000));
+		gems.add(new Gem(1500,600));
+	}
+	
+	public void resetGame() {
+		this.gemscollected = 0;
+		this.addGems();
+		player.resetLives();
 	}
 
 }

@@ -76,16 +76,24 @@ public class Player implements Collidable{
 	public int getLives() {
 		return this.lives;
 	}
+	
 	public Rectangle getBounds() {
 	    return new Rectangle(x, y, width, height);
 	}
+	
 	public void removeLife() {
 		this.lives --;
 	}
+	
+	public void resetLives() {
+		this.lives = 3;
+	}
+	
 	public boolean collidesWithGem(Gem gem) {
 		return this.getBounds().intersects(gem.getBounds());
 	
 	}
+	
 	@Override
 	public boolean collidesWith(Collidable other) {
 		Enemy enemy = (Enemy) other;
