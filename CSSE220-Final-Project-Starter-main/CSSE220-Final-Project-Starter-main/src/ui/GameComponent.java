@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
@@ -95,7 +96,9 @@ public class GameComponent extends JComponent {
 	g2.setColor(FG);
 	}
 	// Minimal placeholder to test  it’s running
-	g2.drawString("Final Project Starter: UI is running ✅", 20, 30);
+	Font font = new Font("Ariel", Font.BOLD, 20);
+	g2.setFont(font);
+	g2.drawString("Lives: " + model.getPlayer().getLives(), 20, 30);
 	zombie1.draw(g2);
 	zombie1.update();
 	
@@ -103,6 +106,8 @@ public class GameComponent extends JComponent {
 	
 	
 	if (model.isGameOver()) {
+		Font gameOverFont = new Font("Ariel", Font.BOLD, 50);
+		g2.setFont(gameOverFont);
 		g2.drawString("Game Over!", WIDTH / 2, HEIGHT / 2);
 	}
 	}
