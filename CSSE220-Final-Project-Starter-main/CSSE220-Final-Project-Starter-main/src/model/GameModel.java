@@ -17,7 +17,7 @@ public class GameModel {
 	// Work on the lab to complete GameModel and Player for initial setup
 	
 	private Player player;
-	private ArrayList<Gem> gems;
+	public ArrayList<Gem> gems;
 	public ArrayList<Enemy> zombies;
 	private int totalgems;
 	private int gemscollected;
@@ -27,16 +27,22 @@ public class GameModel {
 		gems = new ArrayList<>();
 		player = new Player(50, 50, 80, 120);
 		zombies.add(new Enemy(250, 250));
+		zombies.add(new Enemy(1500,500));
+		gems.add(new Gem(500,500));
+		gems.add(new Gem(800,200));
+		gems.add(new Gem(200,1000));
+		gems.add(new Gem(1500,600));
+		totalgems = gems.size();
 	}
 	public void Update() {
 		if(!(gems==null)){
-		for (Gem gem: gems) {
-			if (gem.collidesWith(player)) {
+			for (int i = gems.size() - 1; i >= 0; i--) {
+			if (gems.get(i).collidesWith(player)) {
 				if(totalgems> gemscollected) {
 					gemscollected++;
-					gems.remove(gem);
+					//gems.remove(gem);
 				}
-				
+				gems.remove(gems.get(i));
 			}
 		}
 		}
