@@ -16,6 +16,7 @@ import javax.swing.Timer;
 
 import model.Enemy;
 import model.GameModel;
+import model.Gem;
 
 /**
  * GameComponent draws all objects on screen and handles player input
@@ -104,6 +105,9 @@ public class GameComponent extends JComponent {
 	g2.drawString("Gems collected: " + model.getGemsCollected(), 120, 30);
 	for (Enemy zombie:model.zombies) {
 		zombie.draw(g2);
+	}
+	for (Gem gem:model.gems) {
+		gem.draw(g2);
 	}
 	model.getPlayer().draw(g2);
 	
