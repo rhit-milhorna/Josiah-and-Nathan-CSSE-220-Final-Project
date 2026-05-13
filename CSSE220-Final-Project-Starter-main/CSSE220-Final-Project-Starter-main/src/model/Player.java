@@ -2,11 +2,14 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import tier7.Ball;
+import tier7.Collidable;
 import ui.GameComponent;
 
 /**
@@ -15,7 +18,7 @@ import ui.GameComponent;
  */
 
 
-public class Player {
+public class Player implements Collidable{
 	
 	private int x, y, width, height;
 	private int startx, starty;
@@ -25,6 +28,8 @@ public class Player {
 	public Player(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
+		this.startx=  x;
+		this.starty = y;
 		this.width = width;
 		this.height = height;
 		this.lives = 3;
@@ -67,6 +72,18 @@ public class Player {
 	public int getLives() {
 		return this.lives;
 	}
+	public Rectangle getBounds() {
+	    return new Rectangle(x, y, width, height);
+	}
+	public boolean collidesWithGem(Gem gem) {
+		return this.getBounds().intersects(gem.getBounds());
+	}
+	@Override
+	public boolean collidesWith(Collidable other) {
+		Enemy enemy = (Enemy) other;
+		return this.getBounds().intersects(enemy.getBounds());
+	}
 	
-
+	
+	
 }
