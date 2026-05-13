@@ -2,23 +2,29 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import tier7.Ball;
+import tier7.Collidable;
+
 /**
  * Enemy class deals with enemy information
  * @author Nathan Milhorn
  */
 
-public class Enemy {
+public class Enemy implements Collidable{
 	private int x,y;
 	private int startX;
 	private int startY;
 	private int direction;
 	private int directionClock;
+	private int width = 100;
+	private int height = 250;
 	BufferedImage sprite;
 	public Enemy(int x, int y) {
 		this.x=x;
@@ -35,10 +41,10 @@ public class Enemy {
 	
 	public void draw(Graphics2D g2) {
 		if (sprite != null) {
-			g2.drawImage(sprite,x,y,200,200,null);
+			g2.drawImage(sprite,x,y,width,height,null);
 		} else {
 			g2.setColor(Color.RED);
-			g2.fillOval(x, y, 100, 200);
+			g2.fillOval(x, y, width, height);
 		}
 	}
 	public void move() {
@@ -89,4 +95,14 @@ public class Enemy {
 		move();
 		this.directionClock++;
 	}
+	public Rectangle getBounds() {
+	    return new Rectangle(x, y, width, height);
+	}
+	@Override
+	public boolean collidesWith(Collidable other) {
+		Player player = (Player) other;
+		return this.getBounds().intersects(player.getBounds());
+	}
+	
+
 }
