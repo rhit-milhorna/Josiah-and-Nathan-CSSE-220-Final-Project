@@ -2,6 +2,7 @@ package tier6;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ import javax.imageio.ImageIO;
  * A ball that can be drawn and moved on the screen.
  */
 
-public class Ball {
+public class Ball implements Collidable {
 	
 	// TODO: Add fields for position and size
 	private int x, y, radius;
@@ -23,7 +24,11 @@ public class Ball {
 	private int dy = 2;
 
 	
-	
+	public boolean collidesWith(Collidable other) {
+	    Ball otherBall = (Ball) other;
+	    return this.getBounds().intersects(otherBall.getBounds());
+	    
+	}
 	/**
 	 * Creates a new ball at the given position.
 	 *
@@ -58,6 +63,8 @@ public class Ball {
 		} else {
 		g2.setColor(Color.RED);
 		g2.fillOval(x, y, 2*radius, 2*radius);
+		g2.setColor(Color.RED);
+	    g2.draw(getBounds());
 	}
 	}
 	
@@ -86,6 +93,7 @@ public class Ball {
 	public void reset() {
 		// TODO: Move the ball back to its original position
 		// Replace the current x with the original x
+	
 		this.x = this.startX;
 	}
 	
@@ -114,6 +122,13 @@ public class Ball {
 	        y = GameComponent.HEIGHT - 2 * radius;
 	        dy = -dy;
 	    }
+	}
+	public Rectangle getBounds() {
+	    return new Rectangle(x, y, 2 * radius, 2 * radius);
+	}
+	public void reverse() {
+	    dx = -dx;
+	    dy = -dy;
 	}
 
 }

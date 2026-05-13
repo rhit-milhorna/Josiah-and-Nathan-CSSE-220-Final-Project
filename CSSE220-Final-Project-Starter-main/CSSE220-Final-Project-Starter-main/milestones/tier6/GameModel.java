@@ -21,10 +21,10 @@ public class GameModel {
 	// What game objects do we need to store (walls, enemies, player, coins?
 	// TODO: store multiple balls
     // private ArrayList<Ball> balls;
-	private Ball ball;
-
+	private Ball player;
+	private ArrayList<Ball> balls;
 	public GameModel() {
-
+		balls = new ArrayList<>();
 		// TODO: load a level file (e.g., "level1.txt")
 		loadLevel("level1.txt");
 	}
@@ -50,45 +50,83 @@ public class GameModel {
 			String line = scanner.nextLine();
 			for (int col = 0; col < line.length(); col++) {
 	            char ch = line.charAt(col);
-	            
+	            if (ch == 'P') {
+	            	int x = col * TILE_SIZE;
+	            	int y = row * TILE_SIZE;
+	            	player = new Ball(x,y,14);
+	            	
+	            }
 	            if (ch == 'B') {
 	                int x = col * TILE_SIZE;
 	                int y = row * TILE_SIZE;
 
-	                ball = new Ball(x, y, 14);
+	                balls.add(new Ball(x, y, 14));
 
-	                scanner.close();
-	                return; // stop after first ball
+	                
+	                 // stop after first ball
 		}
+	           
 			}
+			
 			row++;
 		}
 		scanner.close();
-		throw new IllegalStateException("No B found in level file");
+		
 	    // TODO: read file and build game objects
 	}
 	
 	public void update() {
-		ball.update();
-        // TODO: update each ball
+		if (player != null) {
+	        player.update();
+	    }
+
+	    for (Ball b : balls) {
+	        b.update();
+	    }
+
+	    // collision logic goes below
+	    for (int i = 0; i < balls.size(); i++) {
+	        for (int j = i + 1; j < balls.size(); j++) {
+	            Ball a = balls.get(i);
+	            Ball b = balls.get(j);
+
+	            if (a.collidesWith(b)) {
+	                a.reverse();
+	                b.reverse();
+	            }
+	        }
+	    }
+	    for (int i = balls.size() - 1; i >= 0; i--) {
+	        if (player.collidesWith(balls.get(i))) {
+	            balls.remove(i);
+	        }
+	    }
     }
 
     public void draw(Graphics2D g2) {
         // TODO: draw each ball
-    	ball.draw(g2);
+    	
+    	    if (player != null) {
+    	        player.draw(g2);
+    	    }
+
+    	    for (Ball b : balls) {
+    	        b.draw(g2);
+    	    }
+    	
     }
     
     public void movePlayer(int dx) {
-        if (ball != null) {
-            ball.shift(dx);
+        if (player != null) {
+            player.shift(dx);
         }
     }
     
     public void resetPlayer() {
-        if (ball != null) {
-            ball.reset();
+        if (player != null) {
+            player.reset();
         }
-    }
+    }	
     
     
     
