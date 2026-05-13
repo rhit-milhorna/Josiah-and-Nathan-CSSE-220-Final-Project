@@ -35,7 +35,7 @@ public class Player implements Collidable{
 		this.lives = 3;
 		
 		try {
-			sprite = ImageIO.read(Player.class.getResource("e"));
+			sprite = ImageIO.read(Player.class.getResource("adventurer picture.png"));
 		} catch (IOException | IllegalArgumentException e) {
 			sprite = null;
 		}

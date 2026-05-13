@@ -25,7 +25,7 @@ public class GameModel {
 	public GameModel() {
 		zombies = new ArrayList<>();
 		gems = new ArrayList<>();
-		player = new Player(50, 50, 80, 80);
+		player = new Player(50, 50, 80, 120);
 		zombies.add(new Enemy(250, 250));
 	}
 	public void Update() {
