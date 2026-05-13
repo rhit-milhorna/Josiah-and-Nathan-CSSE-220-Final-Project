@@ -1,6 +1,6 @@
 package model;
 
-
+import java.util.ArrayList;
 
 /**
  * Stores the current state of the game and controls the main game rules.
@@ -17,9 +17,24 @@ public class GameModel {
 	// Work on the lab to complete GameModel and Player for initial setup
 	
 	private Player player;
+	private ArrayList<Gem> gems;
+	private ArrayList<Enemy> zombies;
+	private int totalgems;
+	private int gemscollected;
 	
 	public GameModel() {
 		player = new Player(50, 50, 80, 80);
+	}
+	public void Update() {
+		for (Gem gem: gems) {
+			if (gem.collidesWith(player)) {
+				if(totalgems> gemscollected) {
+					gemscollected++;
+					gems.remove(gem);
+				}
+				
+			}
+		}
 	}
 	
 	public Player getPlayer() {

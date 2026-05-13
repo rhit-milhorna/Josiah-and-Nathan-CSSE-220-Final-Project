@@ -43,7 +43,7 @@ public class Gem implements Collidable{
 	}
 
 	@Override
-	public boolean collidesWith(Collidable other) {
+	public boolean collidesWith(Player other) {
 		Player player = (Player) other;
 		return this.getBounds().intersects(player.getBounds());
 	}
