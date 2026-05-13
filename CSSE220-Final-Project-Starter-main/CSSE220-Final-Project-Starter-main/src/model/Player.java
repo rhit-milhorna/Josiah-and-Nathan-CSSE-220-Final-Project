@@ -20,12 +20,14 @@ public class Player {
 	private int x, y, width, height;
 	private int startx, starty;
 	BufferedImage sprite;
+	private int lives;
 	
 	public Player(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.lives = 3;
 		
 		try {
 			sprite = ImageIO.read(Player.class.getResource("e"));
@@ -47,19 +49,19 @@ public class Player {
 		this.x += dx;
 		this.y += dy;
 		
-//		if (x <= 0) {
-//			x = 0;
-//		}
-//		if (x + width >= GameComponent.WIDTH) {
-//			x = GameComponent.WIDTH - width;
-//		}
-//		
-//		if (y <= 0) {
-//			y = 0;
-//		}
-//		if (y + height >= GameComponent.HEIGHT) {
-//			y = GameComponent.HEIGHT - height;
-//		}
+		if (x <= 0) {
+			x = 0;
+		}
+		if (x + width >= GameComponent.WIDTH) {
+			x = GameComponent.WIDTH - width;
+		}
+		
+		if (y <= 0) {
+			y = 0;
+		}
+		if (y + height >= GameComponent.HEIGHT) {
+			y = GameComponent.HEIGHT - height;
+		}
 	}
 	
 
