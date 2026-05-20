@@ -18,6 +18,7 @@ import app.MainApp;
 import model.Enemy;
 import model.GameModel;
 import model.Gem;
+import model.Wall;
 
 /**
  * GameComponent draws all objects on screen and handles player input
@@ -116,6 +117,9 @@ public class GameComponent extends JComponent {
 	}
 	for (Gem gem:model.gems) {
 		gem.draw(g2);
+	}
+	for (Wall wall:model.walls) {
+		wall.draw(g2);
 	}
 	model.getExit().draw(g2);
 	model.getPlayer().draw(g2);

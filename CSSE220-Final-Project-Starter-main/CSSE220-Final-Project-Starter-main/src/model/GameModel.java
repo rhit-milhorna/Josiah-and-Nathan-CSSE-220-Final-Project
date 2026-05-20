@@ -29,6 +29,7 @@ public class GameModel {
 	public ArrayList<Gem> gems;
 	public ArrayList<Enemy> zombies;
 	private ArrayList<String> levels;
+	public ArrayList<Wall> walls;
 	private int level;
 	private int totalgems;
 	private int gemscollected;
@@ -39,7 +40,7 @@ public class GameModel {
 	public GameModel() {
 		zombies = new ArrayList<>();
 		gems = new ArrayList<>();
-
+		walls = new ArrayList<>();
 		levels = new ArrayList<>();
 
 		/*
@@ -123,7 +124,15 @@ public class GameModel {
 	                ;
 	                 // stop after first ball
 		}
-	           
+	            if (ch == 'W') {
+	                int x = col * TILE_SIZE;
+	                int y = row * TILE_SIZE;
+
+	                walls.add(new Wall(x,y));
+
+	                ;
+	                 // stop after first ball
+		}
 			}
 			
 			row++;
@@ -156,6 +165,7 @@ public class GameModel {
 			if(gems.size() == 0) {
 				zombies = new ArrayList<>();
 				gems = new ArrayList<>();
+				walls = new ArrayList<>();
 				exit.lockDoor();
 				level++;
 				
@@ -177,57 +187,12 @@ public class GameModel {
 		
 		}
 		}
+		
+		
+		
+		
 	}
-	/*
-	public void loadLevel(String filename) {
-		  int row = 0;
-
-		InputStream stream = GameModel.class.getResourceAsStream(filename);
-		
-		if (stream == null) {
-			throw new IllegalStateException("Level file not found: " + filename);
-		}
-		Scanner scanner = new Scanner(stream);
-		
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			for (int col = 0; col < line.length(); col++) {
-	            char ch = line.charAt(col);
-	            
-	            
-	            if (ch == 'P') {
-	            	int x = col * TILE_SIZE;
-	            	int y = row * TILE_SIZE;
-	            	player = new Player(x,y,100,125);
-	            	
-	            }
-	            if (ch == 'Z') {
-	            	int x = col * TILE_SIZE;
-	            	int y = row * TILE_SIZE;
-	            	zombies.add(new Enemy(x,y));
-	            	
-	            }
-	            
-	            if (ch == 'G') {
-	                int x = col * TILE_SIZE;
-	                int y = row * TILE_SIZE;
-
-	                gems.add(new Gem(x, y));
-
-	                
-	                 // stop after first ball
-		}
-	            
-	           
-			}
-			
-			row++;
-		}
-		scanner.close();
-		
-	    // TODO: read file and build game objects
-	}
-	*/
+	
 	public Player getPlayer() {
 		return this.player;
 	}
@@ -237,17 +202,63 @@ public class GameModel {
 	public int getlevel() {
 		return this.level;
 	}
-	
+
 	public void movePlayerUp() {
+		if(!(walls == null)) {
+			for (Wall	 wall: walls) {
+				if (wall.collidesWith(player)) {
+					player.move(0, 21);
+					return;
+					}
+					
+				}
+			
+			}
+		
 		player.move(0, -10);
 	}
 	public void movePlayerDown() {
+		if(!(walls == null)) {
+			for (Wall	 wall: walls) {
+				if (wall.collidesWith(player)) {
+					player.move(0, -21);
+					return;
+					}
+					
+				}
+			
+			}
+		
 		player.move(0, 10);
 	}
 	public void movePlayerLeft() {
+		
+		if(!(walls == null)) {
+			for (Wall	 wall: walls) {
+				if (wall.collidesWith(player)) {
+					player.move(21, 0);
+					return;
+					}
+					
+				}
+			
+			}
+		
 		player.move(-10, 0);
 	}
 	public void movePlayerRight() {
+		if(!(walls == null)) {
+			for (Wall	 wall: walls) {
+				if (wall.collidesWith(player)) {
+					player.move(-21, 0);
+					return;
+					}
+					
+				}
+			
+			}
+		
+		
 		player.move(10, 0);
 	}
 	
