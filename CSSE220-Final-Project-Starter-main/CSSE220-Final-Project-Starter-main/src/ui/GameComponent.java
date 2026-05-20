@@ -56,7 +56,7 @@ public class GameComponent extends JComponent {
 		}
 		repaint();
 	});
-	timer.start();
+	
 	
 	this.setFocusable(true);
 	this.requestFocusInWindow();
@@ -129,6 +129,10 @@ public class GameComponent extends JComponent {
 		g2.setFont(new Font("Ariel", Font.PLAIN, 25));
 		g2.drawString("Press Enter to restart", WIDTH / 2, (HEIGHT / 2) + 25);
 	}
+	}
+	
+	public void startTimer() {
+		timer.start();
 	}
 
 	// TODO: draw based on model state
