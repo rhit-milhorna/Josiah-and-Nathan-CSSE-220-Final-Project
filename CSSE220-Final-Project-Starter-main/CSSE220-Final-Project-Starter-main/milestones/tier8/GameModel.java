@@ -67,8 +67,8 @@ public class GameModel {
 		
 			for (int col = 0; col < line.length(); col++) {
 				char ch = grid[row][col];
-				if (ch == 'P') player = new Ball(row, col, 10, row, col);
-				else if (ch == 'B') balls.add(new Ball(row, col, 10, row, col));
+				if (ch == 'P') player = new Ball(row*TILE_SIZE, col*TILE_SIZE, 10, row, col);
+				else if (ch == 'B') balls.add(new Ball(row*TILE_SIZE, col*TILE_SIZE, 10, row, col));
 			}
 		}
 	    
