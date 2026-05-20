@@ -67,6 +67,7 @@ public class GameComponent extends JComponent {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (!model.isGameOver()) {
+				if(!model.isWin()) {
 				if (key == KeyEvent.VK_W) {
 					model.movePlayerUp();
 					repaint();
@@ -83,7 +84,7 @@ public class GameComponent extends JComponent {
 					model.movePlayerRight();
 					repaint();
 				}
-			}
+			}}
 			else {
 				if (key == KeyEvent.VK_ENTER) {
 					model.resetGame();
@@ -134,6 +135,13 @@ public class GameComponent extends JComponent {
 		g2.setFont(new Font("Ariel", Font.PLAIN, 25));
 		g2.drawString("Press Enter to restart", WIDTH / 2, (HEIGHT / 2) + 25);
 	}
+	if (model.isWin()) {
+		updateBackground("winscreen.html");
+		Font Winfont = new Font("Ariel", Font.BOLD, 50);
+		g2.setColor(Color.BLACK);
+		g2.setFont(Winfont);
+		g2.drawString("Press Enter to restart", WIDTH / 2, (HEIGHT / 2) + 25);
+	}
 	}
 	
 	public void startTimer() {
@@ -142,5 +150,11 @@ public class GameComponent extends JComponent {
 
 	// TODO: draw based on model state
 
-	
+	public void updateBackground(String filename) {
+		try {
+			background = ImageIO.read(this.getClass().getResource(filename));
+		} catch (IOException | IllegalArgumentException e) {
+			background = null;
+		}
+	}
 }

@@ -33,7 +33,7 @@ public class GameModel {
 	private int level;
 	private int totalgems;
 	private int gemscollected;
-	
+	private boolean win = false;
 	
 
 	
@@ -57,9 +57,8 @@ public class GameModel {
 		levels = new ArrayList<>();
 
 		levels.add("level1-main.txt");
-		levels.add("level2-main.txt");
-		levels.add("level3-main.txt");
-		levels.add("blanklevel.txt");
+	//	levels.add("level2-main.txt");
+	//	levels.add("level3-main.txt");
 		
 
 		loadLevel(levels.get(level));
@@ -133,6 +132,12 @@ public class GameModel {
 	                ;
 	                 // stop after first ball
 		}
+	            if (ch == 'S') {
+	                win = true;
+
+	                ;
+	                 // stop after first ball
+		}
 			}
 			
 			row++;
@@ -162,16 +167,24 @@ public class GameModel {
 		}
 		}
 		if (exit.collidesWith(player)) {
+			
 			if(gems.size() == 0) {
 				zombies = new ArrayList<>();
 				gems = new ArrayList<>();
 				walls = new ArrayList<>();
-				exit.lockDoor();
 				level++;
 				
-				loadLevel(levels.get(level));
+				if (level < levels.size()) {
+					
+					loadLevel(levels.get(level));
+				}else {
+						win = true;
+						
+					}
+				}
+				
 			}
-		}
+		
 		
 		if(!(zombies == null)) {
 		for (Enemy	 zombie: zombies) {
@@ -266,6 +279,12 @@ public class GameModel {
 		if (player.getLives() == 0) return true;
 		else return false;
 	}
+	public boolean isWin() {
+		if (level>= levels.size()){
+			return true;
+		};
+		return win;
+	}
 	
 	public int getGemsCollected() {
 		return this.gemscollected;
@@ -280,8 +299,11 @@ public class GameModel {
 	
 	public void resetGame() {
 		this.gemscollected = 0;
-		this.addGems();
+		this.level = 0;
+		zombies = new ArrayList<>();
+		gems = new ArrayList<>();
 		player.resetLives();
+		loadLevel(levels.get(level));
 	}
 
 }
