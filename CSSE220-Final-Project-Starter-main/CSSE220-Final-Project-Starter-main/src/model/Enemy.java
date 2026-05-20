@@ -23,8 +23,8 @@ public class Enemy implements Collidable{
 	private int startY;
 	private int direction;
 	private int directionClock;
-	private int width = 100;
-	private int height = 250;
+	private int width = 125;
+	private int height = 150;
 	BufferedImage sprite;
 	public Enemy(int x, int y) {
 		this.x=x;

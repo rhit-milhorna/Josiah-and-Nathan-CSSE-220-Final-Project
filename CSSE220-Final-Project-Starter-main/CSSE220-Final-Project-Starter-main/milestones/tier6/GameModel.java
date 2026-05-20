@@ -38,7 +38,7 @@ public class GameModel {
 	 */
 	public void loadLevel(String filename) {
 		  int row = 0;
-
+		 
 		InputStream stream = GameModel.class.getResourceAsStream(filename);
 		
 		if (stream == null) {

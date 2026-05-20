@@ -109,6 +109,8 @@ public class GameComponent extends JComponent {
 	g2.setFont(font);
 	g2.drawString("Lives: " + model.getPlayer().getLives(), 20, 30);
 	g2.drawString("Gems collected: " + model.getGemsCollected(), 120, 30);
+	g2.drawString("Gems Remaining:" + model.gems.size(), 350, 30);
+	g2.drawString("level: " + (model.getlevel() + 1), 550, 30);
 	for (Enemy zombie:model.zombies) {
 		zombie.draw(g2);
 	}

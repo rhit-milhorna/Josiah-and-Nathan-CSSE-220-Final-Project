@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 /**
  * Stores the current state of the game and controls the main game rules.
@@ -19,10 +23,16 @@ import java.util.Scanner;
 public class GameModel {
 	
 	// Work on the lab to complete GameModel and Player for initial setup
+<<<<<<< Updated upstream
 	private int TILE_SIZE = 80;
+=======
+	public static final int TILE_SIZE = 80;
+>>>>>>> Stashed changes
 	private Player player;
 	public ArrayList<Gem> gems;
 	public ArrayList<Enemy> zombies;
+	private ArrayList<String> levels;
+	private int level;
 	private int totalgems;
 	private int gemscollected;
 	private int level;
@@ -32,18 +42,93 @@ public class GameModel {
 	public GameModel() {
 		zombies = new ArrayList<>();
 		gems = new ArrayList<>();
+<<<<<<< Updated upstream
 		levels = new ArrayList<>();
+=======
+		/*
+>>>>>>> Stashed changes
 		player = new Player(50, 50, 80, 120);
 		zombies.add(new Enemy(250, 250));
 		zombies.add(new Enemy(1500,500));
 		this.addGems();
+		*/
 		totalgems = gems.size();
+<<<<<<< Updated upstream
 		
+=======
+		levels = new ArrayList<>();
+>>>>>>> Stashed changes
 		levels.add("level1-main.txt");
 		levels.add("level2-main.txt");
 		levels.add("level3-main.txt");
 		levels.add("blanklevel.txt");
 		
+<<<<<<< Updated upstream
+=======
+		loadLevel(levels.get(level));
+	}
+	
+	
+	
+	public void loadLevel(String filename) {
+		  int row = 0;
+
+		InputStream stream = GameModel.class.getResourceAsStream(filename);
+		
+		if (stream == null) {
+			throw new IllegalStateException("Level file not found: " + filename);
+		}
+		Scanner scanner = new Scanner(stream);
+		
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			for (int col = 0; col < line.length(); col++) {
+	            char ch = line.charAt(col);
+	           // if (ch == 'P') {
+	            //	int x = col * TILE_SIZE;
+	            	//int y = row * TILE_SIZE;
+	            //	player = new Ball(x,y,14);
+	            	
+	            //}
+	            if (ch == 'P') {
+	                int x = col * TILE_SIZE;
+	                int y = row * TILE_SIZE;
+
+	                player = new Player(x,y,100,120);
+
+	                
+	           
+		}
+	            if (ch == 'Z') {
+	                int x = col * TILE_SIZE;
+	                int y = row * TILE_SIZE;
+
+	                zombies.add(new Enemy(x,y));
+	                
+
+	                
+
+		}
+	            if (ch == 'G') {
+	                int x = col * TILE_SIZE;
+	                int y = row * TILE_SIZE;
+
+	                gems.add(new Gem(x,y));
+
+	                ;
+	                 // stop after first ball
+		}
+	           
+			}
+			
+			row++;
+		}
+		totalgems = gems.size();
+		gemscollected = 0;
+		scanner.close();
+		
+	    // TODO: read file and build game objects
+>>>>>>> Stashed changes
 	}
 	public void Update() {
 		if(!(gems==null)){
@@ -51,6 +136,7 @@ public class GameModel {
 			if (gems.get(i).collidesWith(player)) {
 				if(totalgems> gemscollected) {
 					gemscollected++;
+					
 					//gems.remove(gem);
 				}
 				gems.remove(gems.get(i));
@@ -78,6 +164,7 @@ public class GameModel {
 				}
 				
 			}
+		
 		}
 		}
 	}
@@ -131,6 +218,9 @@ public class GameModel {
 	}
 	public Player getPlayer() {
 		return this.player;
+	}
+	public int getlevel() {
+		return this.level;
 	}
 	
 	public void movePlayerUp() {
