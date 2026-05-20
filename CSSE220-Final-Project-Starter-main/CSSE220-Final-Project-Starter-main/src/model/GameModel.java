@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
 /**
  * Stores the current state of the game and controls the main game rules.
@@ -23,11 +20,11 @@ import java.util.Scanner;
 public class GameModel {
 	
 	// Work on the lab to complete GameModel and Player for initial setup
-<<<<<<< Updated upstream
+
 	private int TILE_SIZE = 80;
-=======
-	public static final int TILE_SIZE = 80;
->>>>>>> Stashed changes
+
+
+
 	private Player player;
 	public ArrayList<Gem> gems;
 	public ArrayList<Enemy> zombies;
@@ -35,16 +32,16 @@ public class GameModel {
 	private int level;
 	private int totalgems;
 	private int gemscollected;
-	private int level;
 	
-	private ArrayList<String> levels;
+	
+
 	
 	public GameModel() {
 		zombies = new ArrayList<>();
 		gems = new ArrayList<>();
-<<<<<<< Updated upstream
+
 		levels = new ArrayList<>();
-=======
+
 		/*
 >>>>>>> Stashed changes
 		player = new Player(50, 50, 80, 120);
@@ -53,18 +50,17 @@ public class GameModel {
 		this.addGems();
 		*/
 		totalgems = gems.size();
-<<<<<<< Updated upstream
+
 		
-=======
+
 		levels = new ArrayList<>();
->>>>>>> Stashed changes
+
 		levels.add("level1-main.txt");
 		levels.add("level2-main.txt");
 		levels.add("level3-main.txt");
 		levels.add("blanklevel.txt");
 		
-<<<<<<< Updated upstream
-=======
+
 		loadLevel(levels.get(level));
 	}
 	
@@ -128,7 +124,6 @@ public class GameModel {
 		scanner.close();
 		
 	    // TODO: read file and build game objects
->>>>>>> Stashed changes
 	}
 	public void Update() {
 		if(!(gems==null)){
@@ -168,6 +163,7 @@ public class GameModel {
 		}
 		}
 	}
+	/*
 	public void loadLevel(String filename) {
 		  int row = 0;
 
@@ -216,6 +212,7 @@ public class GameModel {
 		
 	    // TODO: read file and build game objects
 	}
+	*/
 	public Player getPlayer() {
 		return this.player;
 	}
