@@ -117,6 +117,7 @@ public class GameComponent extends JComponent {
 	for (Gem gem:model.gems) {
 		gem.draw(g2);
 	}
+	model.getExit().draw(g2);
 	model.getPlayer().draw(g2);
 	
 	

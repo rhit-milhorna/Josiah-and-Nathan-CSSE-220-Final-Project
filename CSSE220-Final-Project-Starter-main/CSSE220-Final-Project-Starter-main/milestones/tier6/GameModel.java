@@ -102,7 +102,7 @@ public class GameModel {
 	        }
 	    }
     }
-
+	
     public void draw(Graphics2D g2) {
         // TODO: draw each ball
     	

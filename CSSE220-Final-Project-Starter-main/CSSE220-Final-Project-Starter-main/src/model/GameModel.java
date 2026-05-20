@@ -145,23 +145,23 @@ public class GameModel {
 				}
 				gems.remove(gems.get(i));
 				
-				if (exit.collidesWith(player)) {
-					if(gems.size() == 0) {
-						zombies = new ArrayList<>();
-						gems = new ArrayList<>();
-						
-						level++;
-						
-						loadLevel(levels.get(level));
-					}
-				}
+				
 				if(gems.size() == 0) {
 					exit.unlockDoor();
 				}
 			}
 		}
 		}
-		
+		if (exit.collidesWith(player)) {
+			if(gems.size() == 0) {
+				zombies = new ArrayList<>();
+				gems = new ArrayList<>();
+				exit.lockDoor();
+				level++;
+				
+				loadLevel(levels.get(level));
+			}
+		}
 		
 		if(!(zombies == null)) {
 		for (Enemy	 zombie: zombies) {
@@ -230,6 +230,9 @@ public class GameModel {
 	*/
 	public Player getPlayer() {
 		return this.player;
+	}
+	public Exit getExit() {
+		return this.exit;
 	}
 	public int getlevel() {
 		return this.level;

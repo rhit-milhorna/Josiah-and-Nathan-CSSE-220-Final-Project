@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 public class Exit implements Collidable{
 	private int x;
 	private int y;
-	private int width = 35;
-	private int height = 55;
+	private int width = 80;
+	private int height = 80;
 	BufferedImage sprite;
 
 	public Exit(int x, int y) {
@@ -50,6 +50,13 @@ public class Exit implements Collidable{
 	public void unlockDoor() {
 		try {
 			sprite = ImageIO.read(Enemy.class.getResource("unlockeddoor.png"));
+		} catch (IOException | IllegalArgumentException e) {
+			sprite = null;
+		}
+	}
+	public void lockDoor() {
+		try {
+			sprite = ImageIO.read(Enemy.class.getResource("closeddoor.png"));
 		} catch (IOException | IllegalArgumentException e) {
 			sprite = null;
 		}
