@@ -23,7 +23,7 @@ public class GameModel {
 
 	private int TILE_SIZE = 80;
 
-
+	private Exit exit;
 
 	private Player player;
 	public ArrayList<Gem> gems;
@@ -95,6 +95,15 @@ public class GameModel {
 	                
 	           
 		}
+	            if (ch == 'E') {
+	                int x = col * TILE_SIZE;
+	                int y = row * TILE_SIZE;
+
+	                exit = new Exit(x,y);
+
+	                
+	           
+		}
 	            if (ch == 'Z') {
 	                int x = col * TILE_SIZE;
 	                int y = row * TILE_SIZE;
@@ -135,13 +144,19 @@ public class GameModel {
 					//gems.remove(gem);
 				}
 				gems.remove(gems.get(i));
+				
+				if (exit.collidesWith(player)) {
+					if(gems.size() == 0) {
+						zombies = new ArrayList<>();
+						gems = new ArrayList<>();
+						
+						level++;
+						
+						loadLevel(levels.get(level));
+					}
+				}
 				if(gems.size() == 0) {
-					zombies = new ArrayList<>();
-					gems = new ArrayList<>();
-					
-					level++;
-					
-					loadLevel(levels.get(level));
+					exit.unlockDoor();
 				}
 			}
 		}
