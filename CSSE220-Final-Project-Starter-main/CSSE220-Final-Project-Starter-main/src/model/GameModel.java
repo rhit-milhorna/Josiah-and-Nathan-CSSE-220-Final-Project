@@ -57,8 +57,8 @@ public class GameModel {
 		levels = new ArrayList<>();
 
 		levels.add("level1-main.txt");
-	//	levels.add("level2-main.txt");
-	//	levels.add("level3-main.txt");
+		levels.add("level2-main.txt");
+		levels.add("level3-main.txt");
 		
 
 		loadLevel(levels.get(level));

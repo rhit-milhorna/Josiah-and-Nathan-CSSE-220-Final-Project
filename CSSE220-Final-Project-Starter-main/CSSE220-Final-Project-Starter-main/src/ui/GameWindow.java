@@ -42,4 +42,6 @@ public class GameWindow {
 	public void show() {
 		this.frame.setVisible(true);
 		}
+	
+	
 }

@@ -14,8 +14,8 @@ public class StartPanel extends JPanel{
 	public StartPanel() {
 		
 		this.setLayout(new BorderLayout());
-		add(title, BorderLayout.CENTER);
-		add(start, BorderLayout.SOUTH);
+		add(title, BorderLayout.NORTH);
+		add(start, BorderLayout.CENTER);
 	}
 
 }

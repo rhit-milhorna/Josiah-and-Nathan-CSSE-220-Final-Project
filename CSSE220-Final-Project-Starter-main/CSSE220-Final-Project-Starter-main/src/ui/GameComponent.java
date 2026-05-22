@@ -85,7 +85,7 @@ public class GameComponent extends JComponent {
 					repaint();
 				}
 			}}
-			else {
+			if (model.isGameOver() | model.isWin()) {
 				if (key == KeyEvent.VK_ENTER) {
 					model.resetGame();
 				}
