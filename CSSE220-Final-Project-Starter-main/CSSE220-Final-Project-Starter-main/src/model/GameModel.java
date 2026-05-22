@@ -303,6 +303,7 @@ public class GameModel {
 		zombies = new ArrayList<>();
 		gems = new ArrayList<>();
 		player.resetLives();
+		win = false;
 		loadLevel(levels.get(level));
 	}
 
