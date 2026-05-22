@@ -286,16 +286,16 @@ public class GameModel {
 	
 	public void movePlayer(boolean up, boolean down, boolean left, boolean right) {
 		if (up) {
-			player.move(0, -10);
+			movePlayerUp();
 		}
 		if (down) {
-			player.move(0, 10);
+			movePlayerDown();
 		}
 		if (left) {
-			player.move(-10, 0);
+			movePlayerLeft();
 		}
 		if (right) {
-			player.move(10, 0);
+			movePlayerRight();
 		}
 	}
 	

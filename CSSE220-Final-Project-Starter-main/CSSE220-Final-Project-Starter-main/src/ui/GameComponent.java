@@ -42,6 +42,7 @@ public class GameComponent extends JComponent {
 	private boolean leftButton = false;
 	private boolean rightButton = false;
 
+
 	public GameComponent(GameModel model) {
 	this.model = model;
 	this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
