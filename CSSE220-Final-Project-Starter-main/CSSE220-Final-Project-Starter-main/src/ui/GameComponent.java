@@ -35,6 +35,11 @@ public class GameComponent extends JComponent {
 	BufferedImage background;
 	private Timer timer;
 	private GameModel model;
+	private Enemy zombie1 = new Enemy(250, 250);
+	private boolean upButton = false;
+	private boolean downButton = false;
+	private boolean leftButton = false;
+	private boolean rightButton = false;
 
 	public GameComponent(GameModel model) {
 	this.model = model;
@@ -50,6 +55,8 @@ public class GameComponent extends JComponent {
 	timer = new Timer(30,e->{
 		if (!model.isGameOver()) {
 		model.Update();
+		this.handleMovement();
+		//player.update();
 		}
 		repaint();
 	});
@@ -67,18 +74,30 @@ public class GameComponent extends JComponent {
 				if (key == KeyEvent.VK_W) {
 					model.movePlayerUp();
 					repaint();
+					upButton = true;
+					//model.movePlayerUp();
+					//repaint();
 				}
 				else if (key == KeyEvent.VK_S) {
 					model.movePlayerDown();
 					repaint();
+					downButton = true;
+					//model.movePlayerDown();
+					//repaint();
 				}
 				else if (key == KeyEvent.VK_A) {
 					model.movePlayerLeft();
 					repaint();
+					leftButton = true;
+					//model.movePlayerLeft();
+					//repaint();
 				}
 				else if (key == KeyEvent.VK_D) {
 					model.movePlayerRight();
 					repaint();
+					rightButton = true;
+					//model.movePlayerRight();
+					//repaint();
 				}
 			}}
 			if (model.isGameOver() | model.isWin()) {
@@ -88,7 +107,50 @@ public class GameComponent extends JComponent {
 			}
 			
 		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			int key = e.getKeyCode();
+			if (!model.isGameOver()) {
+				if(!model.isWin()) {
+				if (key == KeyEvent.VK_W) {
+					upButton = false;
+					//model.movePlayerUp();
+					//repaint();
+				}
+				else if (key == KeyEvent.VK_S) {
+					downButton = false;
+					//model.movePlayerDown();
+					//repaint();
+				}
+				else if (key == KeyEvent.VK_A) {
+					leftButton = false;
+					//model.movePlayerLeft();
+					//repaint();
+				}
+				else if (key == KeyEvent.VK_D) {
+					rightButton = false;
+					//model.movePlayerRight();
+					//repaint();
+				}
+			}}
+			if (model.isGameOver() | model.isWin()) {
+				if (key == KeyEvent.VK_ENTER) {
+					model.resetGame();
+				}
+			}
+		}
+		
 	});
+	}
+	
+	public void handleMovement() {
+		if (upButton | downButton | leftButton | rightButton) {
+			model.movePlayer(upButton, downButton, leftButton, rightButton);
+			repaint();
+		}
+		else return;
 	}
 	
 

@@ -284,6 +284,21 @@ public class GameModel {
 		player.move(10, 0);
 	}
 	
+	public void movePlayer(boolean up, boolean down, boolean left, boolean right) {
+		if (up) {
+			player.move(0, -10);
+		}
+		if (down) {
+			player.move(0, 10);
+		}
+		if (left) {
+			player.move(-10, 0);
+		}
+		if (right) {
+			player.move(10, 0);
+		}
+	}
+	
 	public boolean isGameOver() {
 		if (player.getLives() == 0) return true;
 		else return false;
