@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 public class Gem implements Collidable{
 	private int x;
 	private int y;
-	private int width = 35;
-	private int height = 55;
+	private int width = 80;
+	private int height = 80;
 	BufferedImage sprite;
 
 	public Gem(int x, int y) {

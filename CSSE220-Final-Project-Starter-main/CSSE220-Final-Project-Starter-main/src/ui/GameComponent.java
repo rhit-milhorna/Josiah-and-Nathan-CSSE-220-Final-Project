@@ -35,7 +35,6 @@ public class GameComponent extends JComponent {
 	BufferedImage background;
 	private Timer timer;
 	private GameModel model;
-	private Enemy zombie1 = new Enemy(250, 250);
 
 	public GameComponent(GameModel model) {
 	this.model = model;
@@ -43,8 +42,6 @@ public class GameComponent extends JComponent {
 	this.setBackground(BG); // note this only works with JPanels and will not work with JComponents
 	this.setOpaque(true); // we want our own background here. If false - it will be see-through
 
-	//Player player = new Player();
-	Enemy zombie1 = new Enemy(250, 250);
 	try {
 		background = ImageIO.read(this.getClass().getResource("background.png"));
 	} catch (IOException | IllegalArgumentException e) {
@@ -53,7 +50,6 @@ public class GameComponent extends JComponent {
 	timer = new Timer(30,e->{
 		if (!model.isGameOver()) {
 		model.Update();
-		//player.update();
 		}
 		repaint();
 	});
@@ -136,7 +132,6 @@ public class GameComponent extends JComponent {
 		g2.drawString("Press Enter to restart", WIDTH / 2, (HEIGHT / 2) + 25);
 	}
 	if (model.isWin()) {
-		updateBackground("winscreen.html");
 		Font Winfont = new Font("Ariel", Font.BOLD, 50);
 		g2.setColor(Color.BLACK);
 		g2.setFont(Winfont);

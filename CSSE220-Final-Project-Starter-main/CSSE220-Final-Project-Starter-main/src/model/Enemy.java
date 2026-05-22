@@ -23,7 +23,7 @@ public class Enemy implements Collidable{
 	private int startY;
 	private int direction;
 	private int directionClock;
-	private int width = 125;
+	private int width = 150;
 	private int height = 150;
 	BufferedImage sprite;
 	public Enemy(int x, int y) {
@@ -33,7 +33,7 @@ public class Enemy implements Collidable{
 		this.startY = y;
 		
 		try {
-			sprite = ImageIO.read(Enemy.class.getResource("zombie.png"));
+			sprite = ImageIO.read(Enemy.class.getResource("ghost.png"));
 		} catch (IOException | IllegalArgumentException e) {
 			sprite = null;
 		}

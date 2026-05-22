@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Rectangle;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -43,13 +44,7 @@ public class GameModel {
 		walls = new ArrayList<>();
 		levels = new ArrayList<>();
 
-		/*
->>>>>>> Stashed changes
-		player = new Player(50, 50, 80, 120);
-		zombies.add(new Enemy(250, 250));
-		zombies.add(new Enemy(1500,500));
-		this.addGems();
-		*/
+
 		totalgems = gems.size();
 
 		
@@ -90,7 +85,7 @@ public class GameModel {
 	                int x = col * TILE_SIZE;
 	                int y = row * TILE_SIZE;
 
-	                player = new Player(x,y,100,120);
+	                player = new Player(x,y,70,80);
 
 	                
 	           
@@ -172,7 +167,10 @@ public class GameModel {
 				zombies = new ArrayList<>();
 				gems = new ArrayList<>();
 				walls = new ArrayList<>();
-				level++;
+				if(level<levels.size()) {
+					level++;
+
+				}
 				
 				if (level < levels.size()) {
 					
@@ -217,10 +215,13 @@ public class GameModel {
 	}
 
 	public void movePlayerUp() {
+		Rectangle playerrect = player.getBounds();
+		 Rectangle nextrect = new Rectangle(playerrect.x,playerrect.y-10,playerrect.width,playerrect.height);
+		
 		if(!(walls == null)) {
 			for (Wall	 wall: walls) {
-				if (wall.collidesWith(player)) {
-					player.move(0, 21);
+				
+				if (wall.getBounds().intersects(nextrect)) {
 					return;
 					}
 					
@@ -231,10 +232,12 @@ public class GameModel {
 		player.move(0, -10);
 	}
 	public void movePlayerDown() {
+		
+		Rectangle playerrect = player.getBounds();
+		 Rectangle nextrect = new Rectangle(playerrect.x,playerrect.y+10,playerrect.width,playerrect.height);
 		if(!(walls == null)) {
 			for (Wall	 wall: walls) {
-				if (wall.collidesWith(player)) {
-					player.move(0, -21);
+				if (wall.getBounds().intersects(nextrect)) {
 					return;
 					}
 					
@@ -245,11 +248,13 @@ public class GameModel {
 		player.move(0, 10);
 	}
 	public void movePlayerLeft() {
-		
+		Rectangle playerrect = player.getBounds();
+		 Rectangle nextrect = new Rectangle(playerrect.x-10,playerrect.y,playerrect.width,playerrect.height);
+		 
+		 
 		if(!(walls == null)) {
 			for (Wall	 wall: walls) {
-				if (wall.collidesWith(player)) {
-					player.move(21, 0);
+				if (wall.getBounds().intersects(nextrect)) {
 					return;
 					}
 					
@@ -260,10 +265,14 @@ public class GameModel {
 		player.move(-10, 0);
 	}
 	public void movePlayerRight() {
+		
+		Rectangle playerrect = player.getBounds();
+		 Rectangle nextrect = new Rectangle(playerrect.x+10,playerrect.y,playerrect.width,playerrect.height);
+		 
+		 
 		if(!(walls == null)) {
 			for (Wall	 wall: walls) {
-				if (wall.collidesWith(player)) {
-					player.move(-21, 0);
+				if (wall.getBounds().intersects(nextrect)) {
 					return;
 					}
 					
