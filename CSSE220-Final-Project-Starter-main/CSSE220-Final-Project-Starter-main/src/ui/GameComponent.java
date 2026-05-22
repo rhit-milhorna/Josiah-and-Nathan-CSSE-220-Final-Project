@@ -35,14 +35,12 @@ public class GameComponent extends JComponent {
 	BufferedImage background;
 	private Timer timer;
 	private GameModel model;
-<<<<<<< Updated upstream
-=======
+
 	private Enemy zombie1 = new Enemy(250, 250);
 	private boolean upButton = false;
 	private boolean downButton = false;
 	private boolean leftButton = false;
 	private boolean rightButton = false;
->>>>>>> Stashed changes
 
 	public GameComponent(GameModel model) {
 	this.model = model;
@@ -58,11 +56,8 @@ public class GameComponent extends JComponent {
 	timer = new Timer(30,e->{
 		if (!model.isGameOver()) {
 		model.Update();
-<<<<<<< Updated upstream
-=======
 		this.handleMovement();
 		//player.update();
->>>>>>> Stashed changes
 		}
 		repaint();
 	});
