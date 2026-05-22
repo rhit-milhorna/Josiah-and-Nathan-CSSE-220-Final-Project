@@ -8,6 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Controls all things relating to the exit for the levels
+ * @author Nathan Milhorn
+ */
+
 public class Exit implements Collidable{
 	private int x;
 	private int y;

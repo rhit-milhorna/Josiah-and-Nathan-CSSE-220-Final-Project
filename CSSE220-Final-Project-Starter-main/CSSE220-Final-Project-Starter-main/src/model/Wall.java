@@ -8,6 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Controls all things relating to the walls in the levels
+ * @author Nathan Milhorn
+ */
+
 public class Wall implements Collidable{
 	private int x;
 	private int y;

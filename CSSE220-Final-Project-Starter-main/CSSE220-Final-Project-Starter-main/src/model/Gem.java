@@ -8,6 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Controls all things relating to the collectible gems
+ * @author Nathan Milhorn
+ */
+
 public class Gem implements Collidable{
 	private int x;
 	private int y;

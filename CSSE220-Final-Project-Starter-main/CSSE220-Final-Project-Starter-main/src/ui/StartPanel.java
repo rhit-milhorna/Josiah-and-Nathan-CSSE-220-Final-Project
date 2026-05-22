@@ -6,6 +6,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Handles the start screen for the game
+ * @author Josiah Layman
+ */
+
 public class StartPanel extends JPanel{
 	
 	private JLabel title = new JLabel("Main Menu");
